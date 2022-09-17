@@ -1,3 +1,4 @@
+// import the required modules
 const inquirer = require("inquirer");
 const fs = require('fs');
 const cardTemplates = require('./src/card-template.js');
@@ -6,8 +7,10 @@ const Manager = require("./lib/Manager.js");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
 
+// variable for main body of cards created
 let mainBody = ``;
 
+// array of questions to ask user
 const questionsArray = [
     {
         type: "input",
@@ -26,18 +29,21 @@ const questionsArray = [
     },
 ]
 
+// only ask this question if adding a manager card
 const managerQuestion = [{
     type: "input",
     message: "What is this person's office number?",
     name: "managerOfficeNumber",
 }]
 
+// only ask this question if adding an engineer card
 const engineerQuestion = [{
     type: "input",
     message: "What is this person's Github username?",
     name: "engineerGithub",
 }]
 
+// only ask this question if adding an intern card
 const internQuestion = [{
     type: "input",
     message: "What school does this person go to?",
@@ -82,7 +88,7 @@ function askForAdditionalMember(){
     });
 }
 
-
+// ask if the user wants to add an engineer or intern to the team
 function askEngineerOrIntern(){
     inquirer
     .prompt({
@@ -100,7 +106,8 @@ function askEngineerOrIntern(){
     });
 }
 
-
+// create an Engineer card and ask questions about the person
+// when done, ask them if they want to add another person (askForAdditionalMember)
 function createEngineerCard(){
     const engineerQuestions = questionsArray.concat(engineerQuestion);
     
@@ -116,7 +123,8 @@ function createEngineerCard(){
     })
 }
 
-
+// create an Intern card and ask questions about the person
+// when done, ask them if they want to add another person (askForAdditionalMember)
 function createInternCard(){
     const internQuestions = questionsArray.concat(internQuestion);
     
@@ -132,7 +140,7 @@ function createInternCard(){
     })
 }
 
-
+// when they're done adding team members, write the HTML file and add the cards in the main body
 function writeHTMLFile(){
     const htmlFile =   `
 <!DOCTYPE html>
@@ -164,7 +172,7 @@ function writeHTMLFile(){
     createCssFile();
 }
 
-
+// when they're done adding team members, write the CSS file
 function createCssFile(){
     const cssData = `
 .card{
