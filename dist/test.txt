@@ -1,1 +1,29 @@
-This is a test to make sure dist appears in GitHub.
+Some personas for adding members into the team:
+
+MANAGER
+Name: Jake
+ID: 1
+Email: jchung098@fakemail.com
+Office #: 100
+
+ENGINEERS
+Name: Brian
+ID: 2
+Email: brianminglee@fakemail.com
+Github: brianminglee
+
+Name: Linda
+ID: 3
+Email: lindawilliams@fakemail.com
+Github: lwilliams
+
+INTERNS
+Name: Chris
+ID: 4
+Email: chricia22@gmail.com
+School: UCLA
+
+Name: Sarah
+ID: 5
+Email: sjanethomas1@hotmail.com
+School: Cal State LA

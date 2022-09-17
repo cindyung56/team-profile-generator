@@ -46,12 +46,14 @@ const internQuestion = [{
 
 // initialize terminal by asking questions about project manager
 function initialize(){
+    console.log("Enter the project manager's information below.")
+
     const managerQuestions = questionsArray.concat(managerQuestion);
     
     inquirer
     .prompt(managerQuestions)
     .then((response) => {
-        console.log(response);
+        // console.log(response);
         const projectManager = new Manager(response.employeeName, response.employeeId, response.employeeEmail, response.managerOfficeNumber);
         const generatedCard = cardTemplates.generateManagerCard(projectManager);
         mainBody += generatedCard;
@@ -105,7 +107,7 @@ function createEngineerCard(){
     inquirer
     .prompt(engineerQuestions)
     .then((response) => {
-        console.log(response);
+        // console.log(response);
         const projectEngineer = new Engineer(response.employeeName, response.employeeId, response.employeeEmail, response.engineerGithub);
         const generatedCard = cardTemplates.generateEngineerCard(projectEngineer);
         mainBody += generatedCard;
@@ -121,7 +123,7 @@ function createInternCard(){
     inquirer
     .prompt(internQuestions)
     .then((response) => {
-        console.log(response);
+        // console.log(response);
         const projectIntern = new Intern(response.employeeName, response.employeeId, response.employeeEmail, response.internSchool);
         const generatedCard = cardTemplates.generateInternCard(projectIntern);
         mainBody += generatedCard;
