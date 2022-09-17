@@ -1,3 +1,6 @@
+/* card class selector
+makes max-width 250px (not too big but not too small)
+adds a box shadow behind each card */
 .card{
     max-width: 250px;
     box-shadow: 0.5em 0.5em 0.9em gray;

@@ -1,3 +1,4 @@
+// import the required modules
 const inquirer = require("inquirer");
 const fs = require('fs');
 const cardTemplates = require('./src/card-template.js');
@@ -6,8 +7,10 @@ const Manager = require("./lib/Manager.js");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
 
+// variable for main body of cards created
 let mainBody = ``;
 
+// array of questions to ask user
 const questionsArray = [
     {
         type: "input",
@@ -26,18 +29,21 @@ const questionsArray = [
     },
 ]
 
+// only ask this question if adding a manager card
 const managerQuestion = [{
     type: "input",
     message: "What is this person's office number?",
     name: "managerOfficeNumber",
 }]
 
+// only ask this question if adding an engineer card
 const engineerQuestion = [{
     type: "input",
     message: "What is this person's Github username?",
     name: "engineerGithub",
 }]
 
+// only ask this question if adding an intern card
 const internQuestion = [{
     type: "input",
     message: "What school does this person go to?",
@@ -46,12 +52,14 @@ const internQuestion = [{
 
 // initialize terminal by asking questions about project manager
 function initialize(){
+    console.log("Enter the project manager's information below.")
+
     const managerQuestions = questionsArray.concat(managerQuestion);
     
     inquirer
     .prompt(managerQuestions)
     .then((response) => {
-        console.log(response);
+        // console.log(response);
         const projectManager = new Manager(response.employeeName, response.employeeId, response.employeeEmail, response.managerOfficeNumber);
         const generatedCard = cardTemplates.generateManagerCard(projectManager);
         mainBody += generatedCard;
@@ -80,7 +88,7 @@ function askForAdditionalMember(){
     });
 }
 
-
+// ask if the user wants to add an engineer or intern to the team
 function askEngineerOrIntern(){
     inquirer
     .prompt({
@@ -98,14 +106,15 @@ function askEngineerOrIntern(){
     });
 }
 
-
+// create an Engineer card and ask questions about the person
+// when done, ask them if they want to add another person (askForAdditionalMember)
 function createEngineerCard(){
     const engineerQuestions = questionsArray.concat(engineerQuestion);
     
     inquirer
     .prompt(engineerQuestions)
     .then((response) => {
-        console.log(response);
+        // console.log(response);
         const projectEngineer = new Engineer(response.employeeName, response.employeeId, response.employeeEmail, response.engineerGithub);
         const generatedCard = cardTemplates.generateEngineerCard(projectEngineer);
         mainBody += generatedCard;
@@ -114,14 +123,15 @@ function createEngineerCard(){
     })
 }
 
-
+// create an Intern card and ask questions about the person
+// when done, ask them if they want to add another person (askForAdditionalMember)
 function createInternCard(){
     const internQuestions = questionsArray.concat(internQuestion);
     
     inquirer
     .prompt(internQuestions)
     .then((response) => {
-        console.log(response);
+        // console.log(response);
         const projectIntern = new Intern(response.employeeName, response.employeeId, response.employeeEmail, response.internSchool);
         const generatedCard = cardTemplates.generateInternCard(projectIntern);
         mainBody += generatedCard;
@@ -130,7 +140,7 @@ function createInternCard(){
     })
 }
 
-
+// when they're done adding team members, write the HTML file and add the cards in the main body
 function writeHTMLFile(){
     const htmlFile =   `
 <!DOCTYPE html>
@@ -162,7 +172,7 @@ function writeHTMLFile(){
     createCssFile();
 }
 
-
+// when they're done adding team members, write the CSS file
 function createCssFile(){
     const cssData = `
 .card{
